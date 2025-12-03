@@ -1,36 +1,51 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 
-echo "Installing HK-Theme..."
+# Absolute paths
+THEME_DIR="/home/dimsum/dotfiles/HK-Theme"
+FONT_DIR="/home/dimsum/dotfiles/fonts"
+WALLPAPER="$THEME_DIR/wallpapers/HollowKnight.jpg"
 
-# --- Fonts ---
-echo "Installing MesloLGS Nerd Fonts system-wide..."
+echo "Installing MesloLGL Nerd Fonts system-wide..."
 sudo mkdir -p /usr/share/fonts/truetype/meslo
-sudo cp fonts/*.ttf /usr/share/fonts/truetype/meslo/
+sudo cp "$FONT_DIR"/*.ttf /usr/share/fonts/truetype/meslo/
 sudo fc-cache -f -v
 
-# --- Konsole ---
-mkdir -p ~/.local/share/konsole
-cp -r HK-Theme/konsole/* ~/.local/share/konsole/
+echo "Copying theme configs..."
 
-# --- Plasma layout ---
-mkdir -p ~/.config/plasma
-cp HK-Theme/plasma/layout.conf ~/.config/plasma/
+# Fastfetch
+mkdir -p "$HOME/.config/fastfetch"
+cp -r "$THEME_DIR/fastfetch/"* "$HOME/.config/fastfetch/"
 
-# --- Starship ---
-mkdir -p ~/.config
-cp HK-Theme/starship/starship.toml ~/.config/
+# Starship
+mkdir -p "$HOME/.config/starship"
+cp -r "$THEME_DIR/starship/"* "$HOME/.config/starship/"
 
-# --- Color schemes ---
-mkdir -p ~/.local/share/kxmlgui5/konsole
-cp -r HK-Theme/color-schemes/* ~/.local/share/kxmlgui5/konsole/
+# Konsole
+mkdir -p "$HOME/.local/share/konsole"
+cp -r "$THEME_DIR/konsole/"* "$HOME/.local/share/konsole/"
 
-# --- Wallpapers ---
-mkdir -p ~/.local/share/wallpapers
-cp HK-Theme/wallpapers/* ~/.local/share/wallpapers/
+# Color schemes
+mkdir -p "$HOME/.local/share/color-schemes"
+cp -r "$THEME_DIR/color-schemes/"* "$HOME/.local/share/color-schemes/"
 
-# --- Fastfetch ---
-mkdir -p ~/.config/fastfetch
-cp -r HK-Theme/fastfetch/* ~/.config/fastfetch/
+# Plasma panel/layout
+cp "$THEME_DIR/plasma/plasma-org.kde.plasma.desktop-appletsrc" "$HOME/.config/"
 
-echo "HK-Theme installed successfully!"
+# Apply wallpaper dynamically via qdbus
+echo "Applying wallpaper dynamically..."
+qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "
+var allDesktops = desktops();
+for (i=0; i<allDesktops.length; i++) {
+    d = allDesktops[i];
+    d.wallpaperPlugin = 'org.kde.image';
+    d.currentConfigGroup = ['Wallpaper','org.kde.image','General'];
+    d.writeConfig('Image', 'file://$WALLPAPER');
+}
+"
+
+echo "Reloading Plasma to apply changes..."
+kquitapp5 plasmashell || true
+plasmashell &
+
+echo "HK-Theme installed and applied successfully!"
