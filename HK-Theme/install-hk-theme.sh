@@ -18,7 +18,7 @@ echo "Copying theme configs..."
 
 # --- Zsh ---
 echo "Applying Zsh config..."
-cp $THEME_DIR/.zshrc ~/.zshrc
+cp ~/dotfiles/HK-Theme/.zshrc ~/.zshrc
 
 # Fastfetch
 mkdir -p "$HOME/.config/fastfetch"
