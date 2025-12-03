@@ -2,9 +2,9 @@
 set -e
 
 # Absolute paths
-THEME_DIR="/home/dimsum/dotfiles/HK-Theme"
-FONT_DIR="/home/dimsum/dotfiles/fonts"
-WALLPAPER="$THEME_DIR/wallpapers/HollowKnight.jpg"
+THEME_DIR="~/dotfiles/HK-Theme"
+FONT_DIR="~/dotfiles/fonts"
+WALLPAPER="~/dotfiles/HK-Theme/wallpapers/HollowKnight.jpg"
 
 echo "Installing MesloLGL Nerd Fonts system-wide..."
 sudo mkdir -p /usr/share/fonts/truetype/meslo
@@ -12,6 +12,10 @@ sudo cp "$FONT_DIR"/*.ttf /usr/share/fonts/truetype/meslo/
 sudo fc-cache -f -v
 
 echo "Copying theme configs..."
+
+# --- Zsh ---
+echo "Applying Zsh config..."
+cp $THEME_DIR/.zshrc ~/.zshrc
 
 # Fastfetch
 mkdir -p "$HOME/.config/fastfetch"
@@ -30,11 +34,11 @@ mkdir -p "$HOME/.local/share/color-schemes"
 cp -r "$THEME_DIR/color-schemes/"* "$HOME/.local/share/color-schemes/"
 
 # Plasma panel/layout
-cp "$THEME_DIR/plasma/plasma-org.kde.plasma.desktop-appletsrc" "$HOME/.config/"
+cp "$THEME_DIR/plasma/plasma-org.kde.plasma.desktop-appletsrc" "$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
 
 # Apply wallpaper dynamically via qdbus
 echo "Applying wallpaper dynamically..."
-qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "
+qdbus6 org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "
 var allDesktops = desktops();
 for (i=0; i<allDesktops.length; i++) {
     d = allDesktops[i];
@@ -43,6 +47,7 @@ for (i=0; i<allDesktops.length; i++) {
     d.writeConfig('Image', 'file://$WALLPAPER');
 }
 "
+
 
 echo "Reloading Plasma to apply changes..."
 kquitapp5 plasmashell || true
