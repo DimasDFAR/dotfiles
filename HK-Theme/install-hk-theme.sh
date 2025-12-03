@@ -1,46 +1,36 @@
 #!/bin/bash
 set -e
-echo "Applying HK-Theme with Stow..."
 
-# 1️⃣ Install fonts system-wide
+echo "Installing HK-Theme..."
+
+# --- Fonts ---
 echo "Installing MesloLGS Nerd Fonts system-wide..."
 sudo mkdir -p /usr/share/fonts/truetype/meslo
-sudo cp ~/dotfiles/fonts/*.ttf /usr/share/fonts/truetype/meslo/
-sudo fc-cache -fv
+sudo cp fonts/*.ttf /usr/share/fonts/truetype/meslo/
+sudo fc-cache -f -v
 
-# 2️⃣ Apply dotfiles with Stow
-echo "Applying configuration folders with Stow..."
-stow -v -t $HOME HK-Theme/starship
-stow -v -t $HOME HK-Theme/konsole
-stow -v -t $HOME HK-Theme/color-schemes
-stow -v -t $HOME HK-Theme/zsh
+# --- Konsole ---
+mkdir -p ~/.local/share/konsole
+cp -r HK-Theme/konsole/* ~/.local/share/konsole/
 
-# 3️⃣ Copy wallpapers
-echo "Copying wallpapers..."
-mkdir -p ~/Pictures/Wallpapers
-cp HK-Theme/wallpapers/* ~/Pictures/Wallpapers/
+# --- Plasma layout ---
+mkdir -p ~/.config/plasma
+cp HK-Theme/plasma/layout.conf ~/.config/plasma/
 
-# 4️⃣ Apply Plasma layout (taskbar)
-echo "Installing KDE Plasma layout..."
-cp HK-Theme/plasma/layout.conf ~/.config/plasma-org.kde.plasma.desktop-appletsrc
+# --- Starship ---
+mkdir -p ~/.config
+cp HK-Theme/starship/starship.toml ~/.config/
 
-# 5️⃣ Set wallpaper dynamically using qdbus
-echo "Applying wallpaper..."
-WALLPAPER="$HOME/dotfiles/HK-Theme/wallpapers/HollowKnight.jpg"
-plasmashell --replace &
-qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "
-var allDesktops = desktops();
-for (i=0;i<allDesktops.length;i++) {
-    d = allDesktops[i];
-    d.wallpaperPlugin = 'org.kde.image';
-    d.currentConfigGroup = Array('Wallpaper', 'org.kde.image', 'General');
-    d.writeConfig('Image', 'file://$WALLPAPER');
-}"
+# --- Color schemes ---
+mkdir -p ~/.local/share/kxmlgui5/konsole
+cp -r HK-Theme/color-schemes/* ~/.local/share/kxmlgui5/konsole/
 
-# 6️⃣ Set Zsh as default shell
-if [ "$SHELL" != "$(which zsh)" ]; then
-    echo "Setting Zsh as default shell..."
-    chsh -s "$(which zsh)"
-fi
+# --- Wallpapers ---
+mkdir -p ~/.local/share/wallpapers
+cp HK-Theme/wallpapers/* ~/.local/share/wallpapers/
 
-echo "HK-Theme applied successfully! You may need to restart Plasma to see full changes."
+# --- Fastfetch ---
+mkdir -p ~/.config/fastfetch
+cp -r HK-Theme/fastfetch/* ~/.config/fastfetch/
+
+echo "HK-Theme installed successfully!"
