@@ -45,7 +45,7 @@ cp -r ~/KDE-GameThemeDotfiles/HK-Theme/konsolerc ~/.config/konsolerc
 
 # Plasma panel/layout
 echo "Applying taskbar layout..."
-cp "~/KDE-GameThemeDotfiles/HK-Theme/plasma/plasma-org.kde.plasma.desktop-appletsrc" "$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
+cp -r ~/KDE-GameThemeDotfiles/HK-Theme/plasma/plasma-org.kde.plasma.desktop-appletsrc ~/.config/plasma-org.kde.plasma.desktop-appletsrc
 
 # Apply wallpaper dynamically via qdbus
 echo "Applying wallpaper dynamically..."
