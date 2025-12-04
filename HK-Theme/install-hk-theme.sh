@@ -44,7 +44,8 @@ cp -r ~/KDE-GameThemeDotfiles/HK-Theme/konsole/Nordic.colorscheme ~/.local/share
 cp -r ~/KDE-GameThemeDotfiles/HK-Theme/konsolerc ~/.config/konsolerc
 
 # Plasma panel/layout
-cp "~/dotfiles/HK-Theme/plasma/plasma-org.kde.plasma.desktop-appletsrc" "$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
+echo "Applying taskbar layout..."
+cp "~/KDE-GameThemeDotfiles/HK-Theme/plasma/plasma-org.kde.plasma.desktop-appletsrc" "$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
 
 # Apply wallpaper dynamically via qdbus
 echo "Applying wallpaper dynamically..."
