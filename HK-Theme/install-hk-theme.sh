@@ -55,13 +55,13 @@ for (i=0; i<allDesktops.length; i++) {
     d = allDesktops[i];
     d.wallpaperPlugin = 'org.kde.image';
     d.currentConfigGroup = ['Wallpaper','org.kde.image','General'];
-    d.writeConfig('Image', 'file://$WALLPAPER');
+    d.writeConfig('Image', 'file://~/KDE-​Game​Theme​Dotfiles/HK-Theme/wallpapers/HollowKnight.jpg');
 }
 "
 
 
 echo "Reloading Plasma to apply changes..."
-kquitapp5 plasmashell || true
+kquitapp6 plasmashell || true
 plasmashell &
 
 echo "Hollow Knight theme applied! (You may need to restart for all changes to apply)"
