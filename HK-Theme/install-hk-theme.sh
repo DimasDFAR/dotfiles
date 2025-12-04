@@ -4,7 +4,7 @@ set -e
 # Absolute paths
 THEME_DIR="~/KDE-​Game​Theme​Dotfiles/HK-Theme"
 FONT_DIR="~/KDE-​Game​Theme​Dotfiles/fonts"
-WALLPAPER="~/KDE-GameThemeDotfiles/HK-Theme/wallpapers/HollowKnight.jpg"
+WALLPAPER="$HOME/KDE-GameThemeDotfiles/HK-Theme/wallpapers/HollowKnight.jpg"
 
 echo "Installing MesloLGL Nerd Fonts system-wide..."
 sudo mkdir -p /usr/share/fonts/truetype/meslo
@@ -49,7 +49,7 @@ cp -r ~/KDE-GameThemeDotfiles/HK-Theme/plasma/plasma-org.kde.plasma.desktop-appl
 
 # Apply wallpaper dynamically via qdbus
 echo "Applying wallpaper dynamically..."
-plasma-apply-wallpaperimage ~/KDE-GameThemeDotfiles/HK-Theme/wallpapers/HollowKnight.jpg
+plasma-apply-wallpaperimage "$WALLPAPER"
 
 echo "Reloading Plasma to apply changes..."
 kquitapp6 plasmashell || true
