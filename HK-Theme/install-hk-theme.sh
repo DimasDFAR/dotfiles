@@ -49,7 +49,7 @@ cp -r ~/KDE-GameThemeDotfiles/HK-Theme/plasma/plasma-org.kde.plasma.desktop-appl
 
 # Apply wallpaper dynamically via qdbus
 echo "Applying wallpaper dynamically..."
-qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "
+qdbus6 org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "
 var allDesktops = desktops();
 for (i=0;i<allDesktops.length;i++) {
     d = allDesktops[i];
