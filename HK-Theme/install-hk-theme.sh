@@ -20,14 +20,6 @@ echo "Copying theme configs..."
 echo "Applying Zsh configs..."
 cp ~/KDE-GameThemeDotfiles/HK-Theme/.zshrc ~/.zshrc
 
-# Apply wallpaper
-echo "Applying wallpaper dynamically..."
-plasma-apply-wallpaperimage ~/KDE-GameThemeDotfiles/HK-Theme/wallpapers/HollowKnight.jpg
-
-echo "Waiting for wallpaper to fully apply..."
-sleep 5
-
-
 # Color schemes
 echo "Applying color schemes..."
 mkdir -p ~/.local/share/color-schemes
@@ -58,5 +50,12 @@ cp -r ~/KDE-GameThemeDotfiles/HK-Theme/plasma/plasma-org.kde.plasma.desktop-appl
 echo "Reloading Plasma to apply changes..."
 kquitapp6 plasmashell || true
 plasmashell &
+
+echo "Waiting for everything to refresh..."
+sleep 5
+
+# Apply wallpaper
+echo "Applying wallpaper dynamically..."
+plasma-apply-wallpaperimage ~/KDE-GameThemeDotfiles/HK-Theme/wallpapers/HollowKnight.jpg
 
 echo "Hollow Knight theme applied!"
