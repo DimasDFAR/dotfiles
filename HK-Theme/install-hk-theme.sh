@@ -24,6 +24,10 @@ cp ~/KDE-GameThemeDotfiles/HK-Theme/.zshrc ~/.zshrc
 echo "Applying wallpaper dynamically..."
 plasma-apply-wallpaperimage ~/KDE-GameThemeDotfiles/HK-Theme/wallpapers/HollowKnight.jpg
 
+echo "Waiting for wallpaper to fully apply..."
+sleep 5
+
+
 # Color schemes
 echo "Applying color schemes..."
 mkdir -p ~/.local/share/color-schemes
