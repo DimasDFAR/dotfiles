@@ -13,7 +13,8 @@
 
 <h4 align="left"> Terminal and Color Scheme </h3>
 
-<img width="2560" height="1440" alt="PreviewNoWallp" src="https://github.com/user-attachments/assets/bdb69d52-6fdb-4bcc-a941-401110537295" />
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/70f44e7e-f342-45c4-9158-ded96195c06a" />
+
 
 
 
