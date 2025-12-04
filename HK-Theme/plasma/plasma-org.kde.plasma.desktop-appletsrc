@@ -23,7 +23,7 @@ DialogWidth=810
 
 [Containments][25][Wallpaper][org.kde.image][General]
 DynamicMode=3
-Image=$HOME/dotfiles/HK-Theme/wallpapers/HollowKnight.jpg
+Image=$HOME/KDE-GameThemeDotfiles/HK-Theme/wallpapers/HollowKnight.jpg
 SlidePaths=/usr/share/wallpapers/
 
 [Containments][26]
@@ -229,7 +229,7 @@ plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
 [Containments][51][Wallpaper][org.kde.image][General]
-Image=$HOME/dotfiles/HK-Theme/wallpapers/HollowKnight.jpg
+Image=$HOME/KDE-GameThemeDotfiles/HK-Theme/wallpapers/HollowKnight.jpg
 
 [ScreenMapping]
 itemsOnDisabledScreens=
